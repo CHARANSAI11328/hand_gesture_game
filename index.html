@@ -6,13 +6,13 @@
   <title>MOTO GP PRO | Ultra 3D Vision Racing Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>🏍️</text></svg>">
 </head>
 <body>
 
-  <!-- Top Apple-Style Navigation Bar -->
+  <!-- Top Apple / Porsche Navigation Bar -->
   <header id="game-portal-header">
     <div class="portal-brand">
       <div class="brand-logo-gem">
@@ -26,9 +26,9 @@
       <div class="brand-text-col">
         <div class="brand-title-wrap">
           <span class="brand-title">MOTO GP</span>
-          <span class="brand-badge-pro">PRO 3D</span>
+          <span class="brand-badge-pro">CORSE 3D</span>
         </div>
-        <span class="brand-sub">NEURAL VISION GP RACER</span>
+        <span class="brand-sub">SPATIAL NEURAL VISION RACER</span>
       </div>
     </div>
 
@@ -40,7 +40,7 @@
           <path d="M4 22h16"/>
           <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34c1.23-.37 2.12-1.5 2.12-2.83 0-1.66-1.34-3-3-3s-3 1.34-3 3c0 1.33.89 2.46 2.12 2.83z"/>
         </svg>
-        <span class="lbl">BEST</span>
+        <span class="lbl">BEST RECORD</span>
         <span id="header-high-score" class="val">0</span>
       </div>
       <button id="btn-fullscreen" class="portal-chip-btn" title="Toggle Fullscreen">
@@ -58,33 +58,33 @@
   <!-- Hidden Video Element for WebRTC Webcam Stream -->
   <video id="webcam-video" autoplay playsinline muted style="display:none;"></video>
 
-  <!-- Dynamic Gesture Feedback Island (iOS Dynamic Island Style) -->
+  <!-- Dynamic Gesture Feedback Island (Dynamic Island Style) -->
   <div id="active-gesture-badge">
     <div class="gesture-icon-ring">
       <span id="gesture-icon">⇦</span>
     </div>
     <span id="gesture-text">STEER LEFT</span>
   </div>
-  <div id="banner-message">🚀 NITRO BOOST WHEELIE! 🚀</div>
+  <div id="banner-message">NITRO BOOST WHEELIE</div>
 
-  <!-- Persistent Apple Vision Pro Holographic Webcam PiP (Top Right) -->
+  <!-- Persistent Holographic Webcam PiP (Top Right) -->
   <div class="webcam-hud-pip" id="webcam-pip-container">
     <canvas id="hud-canvas" width="240" height="170"></canvas>
     <div class="pip-overlay-header">
       <div id="hud-hand-indicator" class="hand-indicator searching">
         <span class="status-indicator-dot"></span>
-        <span class="status-indicator-label">LOCATING HAND</span>
+        <span class="status-indicator-label">CALIBRATING</span>
       </div>
-      <div class="pip-telemetry-badge">SPATIAL TRACKING</div>
+      <div class="pip-telemetry-badge">SPATIAL VISION</div>
     </div>
     <div class="pip-bottom-spec">
       <span class="spec-live-pulse"></span>
-      <span class="pip-label">NEURAL VISION 60FPS</span>
+      <span class="pip-label">NEURAL TRACKER &bull; 60 FPS</span>
     </div>
   </div>
 
   <!-- ========================================================================
-       1. START & RACING PADDOCK SCREEN (APPLE LEVEL HERO PRESENTATION)
+       1. START & RACING PADDOCK SCREEN (NEXT LEVEL MOTORSPORTS UI)
        ======================================================================== -->
   <div id="start-screen" class="ui-layer active">
     <div class="start-scroll-wrapper">
@@ -93,40 +93,48 @@
       <div class="title-container">
         <div class="ai-badge">
           <span class="badge-dot"></span>
-          <span>APPLE VISION ENGINE &bull; 120 FPS HIGH FIDELITY MOTORCYCLE GP</span>
+          <span>SPATIAL VISION ENGINE &bull; 120 FPS CORSE SPECIFICATION</span>
         </div>
         <h1 class="game-title">MOTO GP <span class="title-gradient">PRO</span></h1>
-        <p class="game-subtitle">PRECISION GESTURE RACING &bull; LEAN, STEER & BOOST WITH LIVE HAND TRACKING</p>
+        <p class="game-subtitle">CONTROL THE DUCATI CORSE WITH YOUR BARE HANDS &bull; LEAN, THROTTLE & BRAKE</p>
       </div>
 
       <!-- Main Dashboard Glass Card -->
       <div class="start-content-box glass-panel">
         
-        <!-- Superbike Specs & Telemetry Bar -->
+        <!-- Superbike Specs & Live Telemetry Bar -->
         <div class="bike-specs-bar">
           <div class="spec-item">
-            <div class="spec-icon-box">🏎️</div>
+            <div class="spec-icon-box">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
             <div class="spec-info">
               <span class="spec-label">TOP VELOCITY</span>
               <span class="spec-val">285 <small>KM/H</small></span>
             </div>
           </div>
           <div class="spec-item">
-            <div class="spec-icon-box">⚡</div>
+            <div class="spec-icon-box">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
             <div class="spec-info">
-              <span class="spec-label">0-100 ACCEL</span>
-              <span class="spec-val">2.6 <small>SEC</small></span>
+              <span class="spec-label">ACCELERATION</span>
+              <span class="spec-val">0-100 IN 2.6s</span>
             </div>
           </div>
           <div class="spec-item">
-            <div class="spec-icon-box">📐</div>
+            <div class="spec-icon-box">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 14l8-8 8 8"/><path d="M12 6v12"/></svg>
+            </div>
             <div class="spec-info">
               <span class="spec-label">MOTOGP LEAN</span>
-              <span class="spec-val">58° <small>MAX</small></span>
+              <span class="spec-val">58° <small>APEX</small></span>
             </div>
           </div>
           <div class="spec-item">
-            <div class="spec-icon-box">🖐️</div>
+            <div class="spec-icon-box">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
             <div class="spec-info">
               <span class="spec-label">INPUT LATENCY</span>
               <span class="spec-val">&lt; 8 <small>MS</small></span>
@@ -137,10 +145,12 @@
         <!-- Speed Preset Quick Selector Banner -->
         <div class="speed-settings-banner">
           <div class="speed-header">
-            <div class="speed-header-icon">⚡</div>
+            <div class="speed-header-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4v8z"/></svg>
+            </div>
             <div class="speed-header-text">
-              <span class="speed-title">RACING SPEED PROFILE</span>
-              <span class="speed-val-badge" id="speed-display-badge">28 km/h &bull; CHILL RIDER</span>
+              <span class="speed-title">CALIBRATED SPEED PROFILE</span>
+              <span class="speed-val-badge" id="speed-display-badge">28 km/h &bull; TOURING SPEC</span>
             </div>
           </div>
           <div class="speed-presets-row">
@@ -162,13 +172,13 @@
         <!-- Section Title -->
         <div class="dojo-header">
           <div class="dojo-title">
-            <h3>SPATIAL GESTURE CONTROLS</h3>
-            <p>Move your hand in front of your camera to fluidly bank into corners, pop wheelies, and brake.</p>
+            <h3>SPATIAL GESTURE SENSORS</h3>
+            <p>Move your hand in front of your camera to bank into corners, pop wheelies, and brake.</p>
           </div>
-          <div class="dojo-counter" id="dojo-progress-badge">3 RACING SENSORS CALIBRATED</div>
+          <div class="dojo-counter" id="dojo-progress-badge">3 SENSORS READY</div>
         </div>
 
-        <!-- 3 Interactive Control Cards -->
+        <!-- 3 Interactive Control Cards with Live Hardware Status -->
         <div class="tutorial-grid">
           <div class="tutorial-card" id="dojo-card-steer">
             <div class="card-glow-accent"></div>
@@ -180,7 +190,7 @@
               </svg>
             </div>
             <h4>STEER & KNEE-DOWN LEAN</h4>
-            <p>Glide your palm <b>Left</b> or <b>Right</b> across the camera. The bike leans into corners with knee sliders scraping!</p>
+            <p>Move palm <b>Left</b> or <b>Right</b> across camera. Bike and rider lean knee-down into the apex!</p>
             <div class="card-status-badge pending" id="status-steer">WAVE LEFT / RIGHT</div>
           </div>
 
@@ -195,7 +205,7 @@
               </svg>
             </div>
             <h4>NITRO BOOST & WHEELIE</h4>
-            <p>Raise your hand <b>Up high</b> or clench a <b>Fist</b> to pop a high-speed wheelie with twin blue exhaust flames.</p>
+            <p>Raise hand <b>Up high</b> or clench a <b>Fist</b> to pop a power wheelie with twin blue exhaust flames.</p>
             <div class="card-status-badge pending" id="status-boost">RAISE HAND OR FIST</div>
           </div>
 
@@ -208,7 +218,7 @@
               </svg>
             </div>
             <h4>REAR BRAKE & SUSPENSION DIVE</h4>
-            <p>Lower your hand <b>Down</b> to ignite bright LED taillights, compress front forks, and weave safely through traffic.</p>
+            <p>Lower palm <b>Down</b> to ignite bright LED taillights, compress front forks, and dodge traffic.</p>
             <div class="card-status-badge pending" id="status-brake">LOWER HAND DOWN</div>
           </div>
         </div>
@@ -240,7 +250,7 @@
               <circle cx="12" cy="12" r="3"/>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
-            <span>TUNING & SETTINGS</span>
+            <span>TUNING LAB</span>
           </button>
           <button id="btn-open-guide" class="apple-btn secondary">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -248,7 +258,7 @@
               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
               <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
-            <span>HOW TO RIDE</span>
+            <span>RIDER GUIDE</span>
           </button>
           <button id="btn-toggle-camera" class="apple-btn secondary">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -261,14 +271,14 @@
 
         <!-- Keyboard & Touch Fallback Notice -->
         <p class="fallback-hint">
-          <span class="hint-bullet">⌨️</span> <b>KEYBOARD CONTROLS:</b> <code>Arrow Keys</code> or <code>A / D</code> to Steer & Lean &bull; <code>W / Shift</code> for Nitro Boost &bull; <code>S / Down</code> to Brake &bull; <code>P</code> to Pause.
+          <b>KEYBOARD OVERRIDE:</b> <code>Arrow Keys</code> or <code>A / D</code> to Steer & Lean &bull; <code>W / Shift</code> for Nitro Boost &bull; <code>S / Down</code> to Brake &bull; <code>P</code> to Pause.
         </p>
       </div>
     </div>
   </div>
 
   <!-- ========================================================================
-       2. IN-GAME HUD OVERLAY (APPLE CARPLAY / PORSCHE TAYCAN DIGITAL DASHBOARD)
+       2. IN-GAME HUD OVERLAY (PORSCHE / DUCATI MOTOGP DIGITAL INSTRUMENT COCKPIT)
        ======================================================================== -->
   <div id="in-game-hud" class="ui-layer">
     <!-- Top Cockpit Cluster Bar -->
@@ -291,23 +301,42 @@
         </div>
 
         <div class="stat-box glass-panel">
-          <span class="stat-label">COMBO</span>
+          <span class="stat-label">MULTIPLIER</span>
           <span id="hud-multiplier" class="stat-value multiplier">1x</span>
         </div>
       </div>
 
-      <!-- Center MotoGP Lean Telemetry Horizon Gyro -->
-      <div class="gesture-compass glass-panel">
-        <div class="compass-label left" id="compass-lbl-left">⇦ LEAN LEFT</div>
-        <div class="compass-track">
-          <div class="compass-zone-divider left-div"></div>
-          <div class="compass-center-notch"></div>
-          <div class="compass-zone-divider right-div"></div>
-          <div class="compass-needle" id="compass-needle"></div>
+      <!-- Center MotoGP Lean Telemetry Horizon & Shift Light Bar -->
+      <div class="cockpit-center-stack">
+        <!-- F1 / MotoGP Tachometer LED Shift Lights -->
+        <div class="shift-light-bar" id="shift-light-bar">
+          <span class="shift-led green"></span>
+          <span class="shift-led green"></span>
+          <span class="shift-led green"></span>
+          <span class="shift-led green"></span>
+          <span class="shift-led yellow"></span>
+          <span class="shift-led yellow"></span>
+          <span class="shift-led yellow"></span>
+          <span class="shift-led yellow"></span>
+          <span class="shift-led red"></span>
+          <span class="shift-led red"></span>
+          <span class="shift-led red"></span>
+          <span class="shift-led red flash"></span>
         </div>
-        <div class="compass-label center" id="compass-lbl-center">◉ UPRIGHT</div>
-        <div class="compass-label right" id="compass-lbl-right">LEAN RIGHT ⇨</div>
-        <div class="lean-degree-badge" id="hud-lean-deg">0°</div>
+
+        <!-- Dynamic Lean Horizon Gyro -->
+        <div class="gesture-compass glass-panel">
+          <div class="compass-label left" id="compass-lbl-left">LEAN L</div>
+          <div class="compass-track">
+            <div class="compass-zone-divider left-div"></div>
+            <div class="compass-center-notch"></div>
+            <div class="compass-zone-divider right-div"></div>
+            <div class="compass-needle" id="compass-needle"></div>
+          </div>
+          <div class="compass-label center" id="compass-lbl-center">0°</div>
+          <div class="compass-label right" id="compass-lbl-right">LEAN R</div>
+          <div class="lean-degree-badge" id="hud-lean-deg">0°</div>
+        </div>
       </div>
 
       <!-- Right Ducati / Porsche Digital Tachometer Dash -->
@@ -343,13 +372,28 @@
       </div>
     </div>
 
-    <!-- Bottom Audio & Control Bar -->
+    <!-- Bottom Audio & Control Bar (Clean SVG Vector Icons) -->
     <div class="hud-controls-bottom">
-      <button id="btn-ingame-pause" class="mini-toggle-btn">⏸️ PAUSE</button>
-      <button id="btn-ingame-settings" class="mini-toggle-btn">⚙️ TUNING</button>
-      <button id="btn-ingame-guide" class="mini-toggle-btn">❓ GUIDE</button>
-      <button id="btn-toggle-music" class="mini-toggle-btn active">🎵 MUSIC</button>
-      <button id="btn-toggle-sfx" class="mini-toggle-btn active">🔊 SFX</button>
+      <button id="btn-ingame-pause" class="mini-toggle-btn" title="Pause Race">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span>PAUSE</span>
+      </button>
+      <button id="btn-ingame-settings" class="mini-toggle-btn" title="Open Settings">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>TUNING</span>
+      </button>
+      <button id="btn-ingame-guide" class="mini-toggle-btn" title="View Guide">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>GUIDE</span>
+      </button>
+      <button id="btn-toggle-music" class="mini-toggle-btn active" title="Toggle Music">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <span>MUSIC</span>
+      </button>
+      <button id="btn-toggle-sfx" class="mini-toggle-btn active" title="Toggle SFX">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <span>SFX</span>
+      </button>
     </div>
   </div>
 
@@ -368,47 +412,59 @@
 
       <div class="guide-grid">
         <div class="guide-item">
-          <div class="guide-icon">🖐️ ⇦</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          </div>
           <div class="guide-info">
             <h4>LEAN & BANK LEFT</h4>
-            <p>Move your hand towards the left side of the camera. The superbike tilts left and the rider drops their left knee.</p>
+            <p>Glide palm to the left side of camera view. The superbike banks left and the rider drops their left knee.</p>
           </div>
         </div>
 
         <div class="guide-item">
-          <div class="guide-icon">🖐️ ⇨</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
           <div class="guide-info">
             <h4>LEAN & BANK RIGHT</h4>
-            <p>Move your hand towards the right side of the camera. The superbike carves right and the rider drops their right knee.</p>
+            <p>Glide palm to the right side of camera view. The superbike carves right and the rider drops their right knee.</p>
           </div>
         </div>
 
         <div class="guide-item">
-          <div class="guide-icon">🖐️ ◉</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
           <div class="guide-info">
             <h4>AERODYNAMIC CENTER</h4>
-            <p>Keep your palm in the center corridor to tuck into an aerodynamic straight-line speed run with maximum top speed.</p>
+            <p>Hold palm centered to tuck down into an aerodynamic straight-line speed run with maximum acceleration.</p>
           </div>
         </div>
 
         <div class="guide-item">
-          <div class="guide-icon">☝️ 🚀</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
           <div class="guide-info">
             <h4>NITRO THROTTLE WHEELIE</h4>
-            <p>Raise your palm high or clench a fist to trigger invulnerable hyper-speed boost and pop a power wheelie!</p>
+            <p>Raise hand high or clench a fist to trigger invulnerable hyper-speed boost and pop a power wheelie!</p>
           </div>
         </div>
 
         <div class="guide-item">
-          <div class="guide-icon">👇 🛑</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><rect x="9" y="9" width="6" height="6"/></svg>
+          </div>
           <div class="guide-info">
             <h4>REAR BRAKE & SUSPENSION DIVE</h4>
-            <p>Lower your palm down to light up red taillights, compress front suspension forks, and safely dodge traffic jams.</p>
+            <p>Lower palm down to light up red taillights, compress front suspension forks, and safely weave through traffic.</p>
           </div>
         </div>
 
         <div class="guide-item">
-          <div class="guide-icon">⌨️ 🕹️</div>
+          <div class="guide-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/><path d="M7 16h10"/></svg>
+          </div>
           <div class="guide-info">
             <h4>KEYBOARD SHORTCUTS</h4>
             <p><code>A / Left</code>: Steer Left &bull; <code>D / Right</code>: Steer Right &bull; <code>W / Shift</code>: Boost &bull; <code>S / Down</code>: Brake &bull; <code>P</code>: Pause</p>
@@ -427,7 +483,7 @@
        ======================================================================== -->
   <div id="game-over-screen" class="ui-layer">
     <div class="game-over-box glass-panel">
-      <div class="game-over-header-badge">RACE TERMINATED</div>
+      <div class="game-over-header-badge">SESSION COMPLETE</div>
       <h2 class="game-over-title">CRASH REPORT</h2>
       <p class="game-over-sub">MOTO GP TELEMETRY & PERFORMANCE ANALYSIS</p>
 
@@ -472,8 +528,14 @@
           </svg>
           <span>RACE AGAIN (R)</span>
         </button>
-        <button id="btn-over-settings" class="apple-btn secondary">⚙️ TUNING</button>
-        <button id="btn-over-menu" class="apple-btn secondary">🏠 PADDOCK HOME</button>
+        <button id="btn-over-settings" class="apple-btn secondary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>TUNING</span>
+        </button>
+        <button id="btn-over-menu" class="apple-btn secondary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>PADDOCK HOME</span>
+        </button>
       </div>
     </div>
   </div>
@@ -511,7 +573,7 @@
       <div class="settings-sections-grid">
         <!-- 1. Speed Section -->
         <div class="setting-group-card">
-          <h4>🏍️ BASE RACING VELOCITY</h4>
+          <h4>BASE RACING VELOCITY</h4>
           <p>Calibrate your cruising baseline speed according to your gesture comfort and skill level.</p>
           
           <div class="speed-presets-modal">
@@ -528,7 +590,7 @@
 
         <!-- 2. Hand Gesture Sensitivity Tuning -->
         <div class="setting-group-card">
-          <h4>🖐️ SPATIAL STEERING DYNAMICS</h4>
+          <h4>SPATIAL STEERING DYNAMICS</h4>
           <p>Adjust neural landmark filter sensitivity between calm touring stability and sharp apex carving.</p>
 
           <div class="slider-control-row">
@@ -539,7 +601,7 @@
 
         <!-- 3. Audio Mixer -->
         <div class="setting-group-card" style="grid-column: 1 / -1;">
-          <h4>🔊 ACOUSTIC ENGINE MIXER</h4>
+          <h4>ACOUSTIC ENGINE MIXER</h4>
           <p>Adjust dynamic 4-stroke crossplane engine sound synthesis and procedural synthwave soundtrack.</p>
 
           <div class="audio-mixer-dual">
@@ -558,7 +620,7 @@
 
       <div class="button-row" style="margin-top: 24px;">
         <button id="btn-save-settings" class="apple-btn primary">SAVE & APPLY SETTINGS</button>
-        <button id="btn-modal-to-home" class="apple-btn secondary">🏠 PADDOCK HOME</button>
+        <button id="btn-modal-to-home" class="apple-btn secondary">PADDOCK HOME</button>
       </div>
     </div>
   </div>

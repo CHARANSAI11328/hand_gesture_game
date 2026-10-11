@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hudLeanDeg = document.getElementById('hud-lean-deg');
   const hudShieldBadge = document.getElementById('hud-shield-badge');
   const hudBoostBadge = document.getElementById('hud-boost-badge');
+  const shiftLightBar = document.getElementById('shift-light-bar');
+  const shiftLeds = shiftLightBar ? shiftLightBar.querySelectorAll('.shift-led') : [];
 
   // Dynamic Island Badges & Notifications
   const bannerMessage = document.getElementById('banner-message');
@@ -440,6 +442,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (hudShieldBadge) hudShieldBadge.style.display = stats.hasShield ? 'inline-flex' : 'none';
     if (hudBoostBadge) hudBoostBadge.style.display = stats.boostActive ? 'inline-flex' : 'none';
+
+    if (shiftLeds && shiftLeds.length > 0) {
+      // stats.rpm typically operates from 2,500 idle up to 14,500 redline
+      const rpmFraction = Math.max(0, Math.min(1, (stats.rpm - 2800) / 11200));
+      const activeCount = Math.floor(rpmFraction * shiftLeds.length);
+      shiftLeds.forEach((led, idx) => {
+        if (idx < activeCount) {
+          led.classList.add('active');
+        } else {
+          led.classList.remove('active');
+        }
+      });
+    }
   };
 
   let bannerTimeout = null;

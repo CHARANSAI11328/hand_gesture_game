@@ -1048,6 +1048,91 @@ body, html {
 .stat-value.coins { color: #FBBF24; }
 .stat-value.multiplier { color: #FB923C; }
 
+/* Tabular Figures to eliminate horizontal layout jitter on 120 FPS high-frequency updates */
+.stat-value,
+.speed-num,
+.speed-digital,
+.gear-indicator,
+.rpm-indicator,
+.lean-degree-badge,
+.spec-val,
+.result-card .val,
+#header-high-score {
+  font-variant-numeric: tabular-nums;
+  -webkit-font-feature-settings: "tnum" 1;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ==========================================================================
+   CENTER MOTOGP TELEMETRY STACK (F1 SHIFT LIGHTS + GYRO LEAN HORIZON)
+   ========================================================================== */
+
+.cockpit-center-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* F1 / MotoGP Tachometer LED Shift Light Bar */
+.shift-light-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(8, 12, 22, 0.76);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 5px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-glass);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.shift-led {
+  width: 12px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.08s ease-out;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.shift-led.green.active {
+  background: #30D158;
+  border-color: #A7F3D0;
+  box-shadow: 0 0 12px rgba(48, 209, 88, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.shift-led.yellow.active {
+  background: #FFB800;
+  border-color: #FEF08A;
+  box-shadow: 0 0 14px rgba(255, 184, 0, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.shift-led.red.active {
+  background: #FF3B30;
+  border-color: #FECACA;
+  box-shadow: 0 0 16px rgba(255, 59, 48, 1), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.shift-led.red.flash.active {
+  animation: redlineShiftStrobe 0.12s infinite alternate;
+}
+
+@keyframes redlineShiftStrobe {
+  0% {
+    background: #FF3B30;
+    box-shadow: 0 0 16px rgba(255, 59, 48, 1);
+  }
+  100% {
+    background: #FFFFFF;
+    box-shadow: 0 0 24px rgba(255, 255, 255, 1), 0 0 32px rgba(255, 59, 48, 1);
+  }
+}
+
 /* Center Gyro Horizon Telemetry */
 .gesture-compass {
   display: flex;
@@ -1683,7 +1768,7 @@ input[type="range"]::-webkit-slider-thumb:active {
   .tutorial-grid { grid-template-columns: 1fr; }
   .hud-top-bar { right: 24px; flex-direction: column; gap: 8px; }
   .webcam-hud-pip { width: 175px; height: 125px; top: auto; bottom: 72px; right: 20px; }
-  .gesture-compass { display: none; }
+  .cockpit-center-stack, .gesture-compass { display: none; }
   .settings-sections-grid { grid-template-columns: 1fr; }
   .audio-mixer-dual { grid-template-columns: 1fr; }
   .guide-grid { grid-template-columns: 1fr; }
