@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOTO GP PRO | Ultra 3D Vision Racing Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>🏍️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Apple-Style Navigation Bar -->
+  <header id="game-portal-header">
+    <div class="portal-brand">
+      <div class="brand-logo-gem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="5.5" cy="17.5" r="3.5"/>
+          <circle cx="18.5" cy="17.5" r="3.5"/>
+          <path d="M15 6h-3.5L8 14h6.5l3-4.5H19"/>
+          <path d="M11 6l2.5 5"/>
+        </svg>
+      </div>
+      <div class="brand-text-col">
+        <div class="brand-title-wrap">
+          <span class="brand-title">MOTO GP</span>
+          <span class="brand-badge-pro">PRO 3D</span>
+        </div>
+        <span class="brand-sub">NEURAL VISION GP RACER</span>
+      </div>
+    </div>
+
+    <div class="portal-actions">
+      <div class="high-score-pill">
+        <svg class="score-trophy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34c1.23-.37 2.12-1.5 2.12-2.83 0-1.66-1.34-3-3-3s-3 1.34-3 3c0 1.33.89 2.46 2.12 2.83z"/>
+        </svg>
+        <span class="lbl">BEST</span>
+        <span id="header-high-score" class="val">0</span>
+      </div>
+      <button id="btn-fullscreen" class="portal-chip-btn" title="Toggle Fullscreen">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <span>FULLSCREEN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3D Three.js WebGL Game Canvas Container -->
+  <div id="game-container"></div>
+
+  <!-- Hidden Video Element for WebRTC Webcam Stream -->
+  <video id="webcam-video" autoplay playsinline muted style="display:none;"></video>
+
+  <!-- Dynamic Gesture Feedback Island (iOS Dynamic Island Style) -->
+  <div id="active-gesture-badge">
+    <div class="gesture-icon-ring">
+      <span id="gesture-icon">⇦</span>
+    </div>
+    <span id="gesture-text">STEER LEFT</span>
+  </div>
+  <div id="banner-message">🚀 NITRO BOOST WHEELIE! 🚀</div>
+
+  <!-- Persistent Apple Vision Pro Holographic Webcam PiP (Top Right) -->
+  <div class="webcam-hud-pip" id="webcam-pip-container">
+    <canvas id="hud-canvas" width="240" height="170"></canvas>
+    <div class="pip-overlay-header">
+      <div id="hud-hand-indicator" class="hand-indicator searching">
+        <span class="status-indicator-dot"></span>
+        <span class="status-indicator-label">LOCATING HAND</span>
+      </div>
+      <div class="pip-telemetry-badge">SPATIAL TRACKING</div>
+    </div>
+    <div class="pip-bottom-spec">
+      <span class="spec-live-pulse"></span>
+      <span class="pip-label">NEURAL VISION 60FPS</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       1. START & RACING PADDOCK SCREEN (APPLE LEVEL HERO PRESENTATION)
+       ======================================================================== -->
+  <div id="start-screen" class="ui-layer active">
+    <div class="start-scroll-wrapper">
+      
+      <!-- Hero Title Header -->
+      <div class="title-container">
+        <div class="ai-badge">
+          <span class="badge-dot"></span>
+          <span>APPLE VISION ENGINE &bull; 120 FPS HIGH FIDELITY MOTORCYCLE GP</span>
+        </div>
+        <h1 class="game-title">MOTO GP <span class="title-gradient">PRO</span></h1>
+        <p class="game-subtitle">PRECISION GESTURE RACING &bull; LEAN, STEER & BOOST WITH LIVE HAND TRACKING</p>
+      </div>
+
+      <!-- Main Dashboard Glass Card -->
+      <div class="start-content-box glass-panel">
+        
+        <!-- Superbike Specs & Telemetry Bar -->
+        <div class="bike-specs-bar">
+          <div class="spec-item">
+            <div class="spec-icon-box">🏎️</div>
+            <div class="spec-info">
+              <span class="spec-label">TOP VELOCITY</span>
+              <span class="spec-val">285 <small>KM/H</small></span>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon-box">⚡</div>
+            <div class="spec-info">
+              <span class="spec-label">0-100 ACCEL</span>
+              <span class="spec-val">2.6 <small>SEC</small></span>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon-box">📐</div>
+            <div class="spec-info">
+              <span class="spec-label">MOTOGP LEAN</span>
+              <span class="spec-val">58° <small>MAX</small></span>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon-box">🖐️</div>
+            <div class="spec-info">
+              <span class="spec-label">INPUT LATENCY</span>
+              <span class="spec-val">&lt; 8 <small>MS</small></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Speed Preset Quick Selector Banner -->
+        <div class="speed-settings-banner">
+          <div class="speed-header">
+            <div class="speed-header-icon">⚡</div>
+            <div class="speed-header-text">
+              <span class="speed-title">RACING SPEED PROFILE</span>
+              <span class="speed-val-badge" id="speed-display-badge">28 km/h &bull; CHILL RIDER</span>
+            </div>
+          </div>
+          <div class="speed-presets-row">
+            <button class="preset-btn active" id="preset-chill" data-speed="28" data-preset="chill">
+              <span class="preset-btn-sub">TOURING</span>
+              <span class="preset-btn-main">CHILL &bull; 28 KM/H</span>
+            </button>
+            <button class="preset-btn" id="preset-normal" data-speed="42" data-preset="normal">
+              <span class="preset-btn-sub">SPORT</span>
+              <span class="preset-btn-main">PRO &bull; 42 KM/H</span>
+            </button>
+            <button class="preset-btn" id="preset-turbo" data-speed="58" data-preset="turbo">
+              <span class="preset-btn-sub">CORSE</span>
+              <span class="preset-btn-main">MOTOGP &bull; 58 KM/H</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section Title -->
+        <div class="dojo-header">
+          <div class="dojo-title">
+            <h3>SPATIAL GESTURE CONTROLS</h3>
+            <p>Move your hand in front of your camera to fluidly bank into corners, pop wheelies, and brake.</p>
+          </div>
+          <div class="dojo-counter" id="dojo-progress-badge">3 RACING SENSORS CALIBRATED</div>
+        </div>
+
+        <!-- 3 Interactive Control Cards -->
+        <div class="tutorial-grid">
+          <div class="tutorial-card" id="dojo-card-steer">
+            <div class="card-glow-accent"></div>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8L22 12L18 16"/>
+                <path d="M6 8L2 12L6 16"/>
+                <path d="M2 12H22"/>
+              </svg>
+            </div>
+            <h4>STEER & KNEE-DOWN LEAN</h4>
+            <p>Glide your palm <b>Left</b> or <b>Right</b> across the camera. The bike leans into corners with knee sliders scraping!</p>
+            <div class="card-status-badge pending" id="status-steer">WAVE LEFT / RIGHT</div>
+          </div>
+
+          <div class="tutorial-card" id="dojo-card-boost">
+            <div class="card-glow-accent"></div>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4.5c1.62-1.63 5-2 5-2"/>
+                <path d="M12 15v5s3.03-.55 4.5-2c1.63-1.62 2-5 2-5"/>
+              </svg>
+            </div>
+            <h4>NITRO BOOST & WHEELIE</h4>
+            <p>Raise your hand <b>Up high</b> or clench a <b>Fist</b> to pop a high-speed wheelie with twin blue exhaust flames.</p>
+            <div class="card-status-badge pending" id="status-boost">RAISE HAND OR FIST</div>
+          </div>
+
+          <div class="tutorial-card" id="dojo-card-brake">
+            <div class="card-glow-accent"></div>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <rect x="9" y="9" width="6" height="6" rx="1"/>
+              </svg>
+            </div>
+            <h4>REAR BRAKE & SUSPENSION DIVE</h4>
+            <p>Lower your hand <b>Down</b> to ignite bright LED taillights, compress front forks, and weave safely through traffic.</p>
+            <div class="card-status-badge pending" id="status-brake">LOWER HAND DOWN</div>
+          </div>
+        </div>
+
+        <!-- Camera Status Bar -->
+        <div class="camera-status-bar">
+          <div id="camera-status-text">
+            <span class="status-dot green"></span>
+            <span>NEURAL VISION ACTIVE (READY TO RACE)</span>
+          </div>
+          <div class="camera-hint-text">
+            Camera is mirrored: shifting your hand right naturally banks and carves your motorcycle right.
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-row">
+          <button id="btn-start-game" class="apple-btn primary pulse">
+            <span class="btn-shine"></span>
+            <span class="btn-label-content">
+              <svg class="btn-play-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>ENTER GRAND PRIX</span>
+            </span>
+          </button>
+          <button id="btn-open-settings" class="apple-btn secondary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>TUNING & SETTINGS</span>
+          </button>
+          <button id="btn-open-guide" class="apple-btn secondary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>HOW TO RIDE</span>
+          </button>
+          <button id="btn-toggle-camera" class="apple-btn secondary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <span>CAMERA: ON</span>
+          </button>
+        </div>
+
+        <!-- Keyboard & Touch Fallback Notice -->
+        <p class="fallback-hint">
+          <span class="hint-bullet">⌨️</span> <b>KEYBOARD CONTROLS:</b> <code>Arrow Keys</code> or <code>A / D</code> to Steer & Lean &bull; <code>W / Shift</code> for Nitro Boost &bull; <code>S / Down</code> to Brake &bull; <code>P</code> to Pause.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. IN-GAME HUD OVERLAY (APPLE CARPLAY / PORSCHE TAYCAN DIGITAL DASHBOARD)
+       ======================================================================== -->
+  <div id="in-game-hud" class="ui-layer">
+    <!-- Top Cockpit Cluster Bar -->
+    <div class="hud-top-bar">
+      <!-- Left Stats Cluster -->
+      <div class="stats-cluster">
+        <div class="stat-box glass-panel">
+          <span class="stat-label">SCORE</span>
+          <span id="hud-score" class="stat-value score">0</span>
+        </div>
+
+        <div class="stat-box glass-panel">
+          <span class="stat-label">DISTANCE</span>
+          <span id="hud-distance" class="stat-value">0m</span>
+        </div>
+
+        <div class="stat-box glass-panel">
+          <span class="stat-label">COINS</span>
+          <span id="hud-coins" class="stat-value coins">0</span>
+        </div>
+
+        <div class="stat-box glass-panel">
+          <span class="stat-label">COMBO</span>
+          <span id="hud-multiplier" class="stat-value multiplier">1x</span>
+        </div>
+      </div>
+
+      <!-- Center MotoGP Lean Telemetry Horizon Gyro -->
+      <div class="gesture-compass glass-panel">
+        <div class="compass-label left" id="compass-lbl-left">⇦ LEAN LEFT</div>
+        <div class="compass-track">
+          <div class="compass-zone-divider left-div"></div>
+          <div class="compass-center-notch"></div>
+          <div class="compass-zone-divider right-div"></div>
+          <div class="compass-needle" id="compass-needle"></div>
+        </div>
+        <div class="compass-label center" id="compass-lbl-center">◉ UPRIGHT</div>
+        <div class="compass-label right" id="compass-lbl-right">LEAN RIGHT ⇨</div>
+        <div class="lean-degree-badge" id="hud-lean-deg">0°</div>
+      </div>
+
+      <!-- Right Ducati / Porsche Digital Tachometer Dash -->
+      <div class="speedometer-cluster glass-panel">
+        <div class="dash-top-row">
+          <div class="gear-indicator-wrap">
+            <span class="gear-lbl">GEAR</span>
+            <span class="gear-indicator" id="hud-gear">6</span>
+          </div>
+          <div class="rpm-indicator">
+            <span id="hud-rpm">11,200</span> <small>RPM</small>
+          </div>
+        </div>
+        <div class="speed-digital">
+          <span id="hud-speed" class="speed-num">185</span>
+          <span class="speed-unit">KM/H</span>
+        </div>
+        <div class="speed-bar-wrap">
+          <div class="speed-bar-fill" id="hud-speed-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Power-up Badges (Under Stats) -->
+    <div class="badge-container">
+      <div id="hud-shield-badge" class="hud-badge shield">
+        <span class="badge-glow-dot"></span>
+        <span>SHIELD ACTIVE</span>
+      </div>
+      <div id="hud-boost-badge" class="hud-badge boost">
+        <span class="badge-glow-dot"></span>
+        <span>NITRO HYPER-BOOST</span>
+      </div>
+    </div>
+
+    <!-- Bottom Audio & Control Bar -->
+    <div class="hud-controls-bottom">
+      <button id="btn-ingame-pause" class="mini-toggle-btn">⏸️ PAUSE</button>
+      <button id="btn-ingame-settings" class="mini-toggle-btn">⚙️ TUNING</button>
+      <button id="btn-ingame-guide" class="mini-toggle-btn">❓ GUIDE</button>
+      <button id="btn-toggle-music" class="mini-toggle-btn active">🎵 MUSIC</button>
+      <button id="btn-toggle-sfx" class="mini-toggle-btn active">🔊 SFX</button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       3. CONTROLS GUIDE & HELP MODAL
+       ======================================================================== -->
+  <div id="guide-modal" class="ui-layer">
+    <div class="guide-modal-box glass-panel">
+      <div class="guide-modal-header">
+        <div class="modal-title-col">
+          <span class="modal-category">RIDER'S COMPASS</span>
+          <h2 class="neon-subtitle">HOW TO RIDE MOTO GP PRO</h2>
+        </div>
+        <button id="btn-close-guide" class="close-btn" aria-label="Close Guide">&times;</button>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-item">
+          <div class="guide-icon">🖐️ ⇦</div>
+          <div class="guide-info">
+            <h4>LEAN & BANK LEFT</h4>
+            <p>Move your hand towards the left side of the camera. The superbike tilts left and the rider drops their left knee.</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-icon">🖐️ ⇨</div>
+          <div class="guide-info">
+            <h4>LEAN & BANK RIGHT</h4>
+            <p>Move your hand towards the right side of the camera. The superbike carves right and the rider drops their right knee.</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-icon">🖐️ ◉</div>
+          <div class="guide-info">
+            <h4>AERODYNAMIC CENTER</h4>
+            <p>Keep your palm in the center corridor to tuck into an aerodynamic straight-line speed run with maximum top speed.</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-icon">☝️ 🚀</div>
+          <div class="guide-info">
+            <h4>NITRO THROTTLE WHEELIE</h4>
+            <p>Raise your palm high or clench a fist to trigger invulnerable hyper-speed boost and pop a power wheelie!</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-icon">👇 🛑</div>
+          <div class="guide-info">
+            <h4>REAR BRAKE & SUSPENSION DIVE</h4>
+            <p>Lower your palm down to light up red taillights, compress front suspension forks, and safely dodge traffic jams.</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-icon">⌨️ 🕹️</div>
+          <div class="guide-info">
+            <h4>KEYBOARD SHORTCUTS</h4>
+            <p><code>A / Left</code>: Steer Left &bull; <code>D / Right</code>: Steer Right &bull; <code>W / Shift</code>: Boost &bull; <code>S / Down</code>: Brake &bull; <code>P</code>: Pause</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top: 24px;">
+        <button id="btn-guide-resume" class="apple-btn primary">GOT IT &bull; RESUME RACE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. GAME OVER SCREEN (AAA RESULTS TELEMETRY BRIEFING)
+       ======================================================================== -->
+  <div id="game-over-screen" class="ui-layer">
+    <div class="game-over-box glass-panel">
+      <div class="game-over-header-badge">RACE TERMINATED</div>
+      <h2 class="game-over-title">CRASH REPORT</h2>
+      <p class="game-over-sub">MOTO GP TELEMETRY & PERFORMANCE ANALYSIS</p>
+
+      <div class="results-grid">
+        <div class="result-card highlight">
+          <div class="label">FINAL GRAND PRIX SCORE</div>
+          <div id="final-score" class="val">0</div>
+        </div>
+
+        <div class="result-card">
+          <div class="label">TOP VELOCITY REACHED</div>
+          <div id="final-speed" class="val">0 KM/H</div>
+        </div>
+
+        <div class="result-card">
+          <div class="label">DISTANCE TRAVELED</div>
+          <div id="final-distance" class="val">0 m</div>
+        </div>
+
+        <div class="result-card">
+          <div class="label">CLOSE PASSES (NEAR MISSES)</div>
+          <div id="final-nearmisses" class="val">0</div>
+        </div>
+
+        <div class="result-card">
+          <div class="label">GOLD COINS COLLECTED</div>
+          <div id="final-coins" class="val">0</div>
+        </div>
+
+        <div class="result-card">
+          <div class="label">ALL-TIME RECORD SCORE</div>
+          <div id="high-score" class="val">0</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-row">
+        <button id="btn-restart" class="apple-btn primary pulse">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+          <span>RACE AGAIN (R)</span>
+        </button>
+        <button id="btn-over-settings" class="apple-btn secondary">⚙️ TUNING</button>
+        <button id="btn-over-menu" class="apple-btn secondary">🏠 PADDOCK HOME</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       5. PAUSE SCREEN
+       ======================================================================== -->
+  <div id="pause-screen" class="ui-layer">
+    <div class="pause-box glass-panel">
+      <div class="pause-pulse-indicator"></div>
+      <h2 class="pause-title">RACE PAUSED</h2>
+      <p class="pause-sub">Place your hand back into the camera viewport to resume riding.</p>
+      <div class="button-row" style="margin-top: 24px;">
+        <button id="btn-resume" class="apple-btn primary">RESUME RACE</button>
+        <button id="btn-pause-settings" class="apple-btn secondary">TUNING</button>
+        <button id="btn-pause-guide" class="apple-btn secondary">CONTROLS GUIDE</button>
+        <button id="btn-quit" class="apple-btn secondary">PADDOCK HOME</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. GAMEPLAY & SPEED SETTINGS MODAL
+       ======================================================================== -->
+  <div id="settings-modal" class="ui-layer">
+    <div class="settings-modal-box glass-panel">
+      <div class="guide-modal-header">
+        <div class="modal-title-col">
+          <span class="modal-category">ENGINEERING LAB</span>
+          <h2 class="neon-subtitle">SUPERBIKE TUNING & TELEMETRY</h2>
+        </div>
+        <button id="btn-close-settings" class="close-btn" aria-label="Close Settings">&times;</button>
+      </div>
+
+      <div class="settings-sections-grid">
+        <!-- 1. Speed Section -->
+        <div class="setting-group-card">
+          <h4>🏍️ BASE RACING VELOCITY</h4>
+          <p>Calibrate your cruising baseline speed according to your gesture comfort and skill level.</p>
+          
+          <div class="speed-presets-modal">
+            <button class="preset-btn modal-preset" id="modal-preset-chill" data-preset="chill" data-speed="28">CHILL (28 km/h)</button>
+            <button class="preset-btn modal-preset" id="modal-preset-normal" data-preset="normal" data-speed="42">PRO (42 km/h)</button>
+            <button class="preset-btn modal-preset" id="modal-preset-turbo" data-preset="turbo" data-speed="58">MOTOGP (58 km/h)</button>
+          </div>
+
+          <div class="slider-control-row">
+            <label>FINE TUNE VELOCITY: <span id="custom-speed-val" class="highlight-val">28 km/h</span></label>
+            <input type="range" id="game-speed-slider" min="18" max="65" step="2" value="28">
+          </div>
+        </div>
+
+        <!-- 2. Hand Gesture Sensitivity Tuning -->
+        <div class="setting-group-card">
+          <h4>🖐️ SPATIAL STEERING DYNAMICS</h4>
+          <p>Adjust neural landmark filter sensitivity between calm touring stability and sharp apex carving.</p>
+
+          <div class="slider-control-row">
+            <label>LEAN SENSITIVITY: <span id="sens-val-modal" class="highlight-val">BALANCED</span></label>
+            <input type="range" id="modal-sens-slider" min="0.15" max="0.50" step="0.05" value="0.28">
+          </div>
+        </div>
+
+        <!-- 3. Audio Mixer -->
+        <div class="setting-group-card" style="grid-column: 1 / -1;">
+          <h4>🔊 ACOUSTIC ENGINE MIXER</h4>
+          <p>Adjust dynamic 4-stroke crossplane engine sound synthesis and procedural synthwave soundtrack.</p>
+
+          <div class="audio-mixer-dual">
+            <div class="slider-control-row">
+              <label>MUSIC VOLUME: <span id="music-vol-val" class="highlight-val">70%</span></label>
+              <input type="range" id="music-vol-slider" min="0" max="1" step="0.05" value="0.7">
+            </div>
+
+            <div class="slider-control-row">
+              <label>ENGINE & SFX VOLUME: <span id="sfx-vol-val" class="highlight-val">80%</span></label>
+              <input type="range" id="sfx-vol-slider" min="0" max="1" step="0.05" value="0.8">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-row" style="margin-top: 24px;">
+        <button id="btn-save-settings" class="apple-btn primary">SAVE & APPLY SETTINGS</button>
+        <button id="btn-modal-to-home" class="apple-btn secondary">🏠 PADDOCK HOME</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Modular Game Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/gestures.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

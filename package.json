@@ -1,0 +1,29 @@
+{
+  "name": "hand-gesture-game",
+  "version": "1.0.0",
+  "description": "3D Moto Rush GP Superbike Racing Game controlled by webcam hand gestures using MediaPipe Hands and Three.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CHARANSAI11328/hand_gesture_game.git"
+  },
+  "keywords": [
+    "game",
+    "hand-gestures",
+    "mediapipe",
+    "threejs",
+    "webcam",
+    "motorcycle",
+    "racing",
+    "motogp"
+  ],
+  "author": "CHARANSAI11328",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CHARANSAI11328/hand_gesture_game/issues"
+  },
+  "homepage": "https://github.com/CHARANSAI11328/hand_gesture_game#readme"
+}
